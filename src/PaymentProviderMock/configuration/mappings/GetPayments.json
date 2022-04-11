@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/Payments"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "ApplicationNumber": 123456
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
