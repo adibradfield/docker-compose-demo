@@ -16,6 +16,8 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+    depends_on:
+      - mongo
 
   payment-provider-mock:
     image: payment-provider-mock:local
@@ -29,6 +31,9 @@ services:
     environment:
       - API_ENDPOINT=http://payment-provider-mock:1080/Payments
       - MONGO=mongodb://root:root@mongo:27017/
+    depends_on:
+      - mongo
+      - payment-provider-mock
 
   payments-service:
     image: payments-service:local
@@ -37,3 +42,5 @@ services:
       - MONGO=mongodb://root:root@mongo:27017/
     ports:
       - 8082:80
+    depends_on:
+      - mongo

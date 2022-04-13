@@ -16,6 +16,8 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+    depends_on:
+      - mongo
 
   payment-provider-mock:
     image: composedemo.azurecr.io/payment-provider-mock:latest
@@ -27,6 +29,9 @@ services:
     environment:
       - API_ENDPOINT=http://payment-provider-mock:1080/Payments
       - MONGO=mongodb://root:root@mongo:27017/
+    depends_on:
+      - mongo
+      - payment-provider-mock
 
   payments-service:
     image: composedemo.azurecr.io/payments-service:latest
