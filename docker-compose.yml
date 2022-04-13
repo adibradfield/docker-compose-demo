@@ -18,22 +18,21 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
 
   payment-provider-mock:
-    image: payment-provider-mock:local
-    build: src/PaymentProviderMock
+    image: composedemo.azurecr.io/payment-provider-mock:latest
     ports:
       - 8083:1080
 
   payment-history-populator:
-    image: payment-history-populator:local
-    build: src/PaymentHistoryPopulator
+    image: composedemo.azurecr.io/payments-history-populator:latest
     environment:
       - API_ENDPOINT=http://payment-provider-mock:1080/Payments
       - MONGO=mongodb://root:root@mongo:27017/
 
   payments-service:
-    image: payments-service:local
-    build: src/PaymentService
+    image: composedemo.azurecr.io/payments-service:latest
     environment:
       - MONGO=mongodb://root:root@mongo:27017/
     ports:
       - 8082:80
+    depends_on:
+      - mongo

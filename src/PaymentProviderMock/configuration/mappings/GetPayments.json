@@ -1,15 +1,12 @@
-{
-    "request": {
-        "method": "GET",
-        "urlPathPattern": "/Payments"
-    },
-    "response": {
-        "status": 200,
-        "jsonBody": {
-            "ApplicationNumber": 123456
+[
+    {
+        "httpRequest": {
+            "method": "GET",
+            "path": "/Payments"
         },
-        "headers": {
-            "Content-Type": "application/json"
+        "httpResponseTemplate": {
+            "templateType": "MUSTACHE",
+            "template": "{'statusCode': 200,'body': {'clientId': {{ rand_int_10 }}, 'description': '{{ uuid }}', 'amount': {{ rand_int_100 }}},'headers': {'Content-Type': 'application/json'}}"
         }
     }
-}
+]

@@ -93,6 +93,32 @@
             "netCore": {
                 "appProject": "${workspaceFolder}/PaymentService.csproj"
             }
+        },
+        {
+            "type": "shell",
+            "label": "Compose Up",
+            "options": {
+                "cwd": "${workspaceFolder}/../../"
+            },
+            "command": "docker-compose -f ./docker-compose.yml -f ./src/PaymentService/compose.debug.yml up -d --build payments-service",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "shell",
+            "label": "Compose Stop",
+            "options": {
+                "cwd": "${workspaceFolder}/../../"
+            },
+            "command": "docker-compose -f ./docker-compose.yml -f src/PaymentService/compose.debug.yml stop payments-service",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
         }
     ]
 }

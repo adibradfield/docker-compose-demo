@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  payments-service:
+    image: payments-service:debug
+    container_name: payments-service-debug
+    build:
+      context: ./src/PaymentService
+      network: host
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
